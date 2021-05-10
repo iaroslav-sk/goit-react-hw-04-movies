@@ -1,0 +1,12 @@
+.listItem {
+  width: 300px;
+  border: 1px solid tomato;
+  background-color: turquoise;
+  color: purple;
+  margin-bottom: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+
+  font-size: 20px;
+}
