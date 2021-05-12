@@ -18,14 +18,14 @@ class SearchBar extends Component {
   async getMoviesByQuery(searchQuery) {
     const API_KEY = '4b778d4c29fb731b86ff7a9149d1de58';
     const BASE_URL = 'https://api.themoviedb.org/3';
-
-    const response = await axios.get(
-      `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${searchQuery}&page=1&include_adult=false`,
-    );
-
-    this.setState({
-      movies: response.data.results,
-    });
+    if (searchQuery.length !== 0) {
+      const response = await axios.get(
+        `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${searchQuery}&page=1&include_adult=false`,
+      );
+      this.setState({
+        movies: response.data.results,
+      });
+    }
   }
 
   handleFormSubmit = event => {

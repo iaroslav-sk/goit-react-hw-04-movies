@@ -41,6 +41,9 @@ class MovieDetailsPage extends Component {
 
   render() {
     const { url, path } = this.props.match;
+
+    const { from } = this.props.history.location.state;
+
     const {
       id,
       title,
@@ -75,16 +78,40 @@ class MovieDetailsPage extends Component {
           </div>
           <h3>Additional information</h3>
           <ul>
-            <Link to={`${url}/cast`}>Cast</Link>
+            <Link
+              to={{
+                pathname: `${url}/cast`,
+                state: {
+                  from,
+                },
+              }}
+            >
+              Cast
+            </Link>
           </ul>
           <ul>
-            <Link to={`${url}/reviews`}>Films Reviews</Link>{' '}
+            <Link
+              to={{
+                pathname: `${url}/reviews`,
+                state: {
+                  from,
+                },
+              }}
+            >
+              Films Reviews
+            </Link>{' '}
           </ul>
           <Switch>
             <Route
               path={`${path}/cast`}
               render={props => {
-                return <Cast {...props} cast={this.state.credits} />;
+                return (
+                  <Cast
+                    {...props}
+                    cast={this.state.credits}
+                    onClick={this.pageBackClick}
+                  />
+                );
               }}
             />
             <Route
